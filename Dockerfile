@@ -14,9 +14,11 @@ RUN apt-get update && apt-get install -y \
     libsqlite3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiamos los requerimientos e instalamos
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copiamos el archivo ligero del servidor
+COPY requirements-server.txt .
+
+# Instalamos usando ese archivo
+RUN pip install --no-cache-dir -r requirements-server.txt
 
 # Copiamos todo el código del proyecto
 COPY . .
